@@ -1,3 +1,5 @@
+<HTML>
+<h1>Proyecto 3: Memoria</h1>
 Este proyecto contiene el código y la documentación para la construcción de una memoria de acceso aleatorio (RAM) escalable desde 1 bit hasta 64k bits, así como la implementación de un contador de programa (PC)
 utilizando componentes digitales. Este proyecto se basa en la construcción y combinación de chips de 1 bit y registros de 16 bits, siguiendo una metodología de diseño de sistemas digitales.
 
