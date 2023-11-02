@@ -22,6 +22,7 @@ Computadora
 
 Una computadora es un dispositivo electrónico programable que puede almacenar, procesar y recuperar datos. 
 Se compone de muchos componentes diferentes, incluida la CPU, la memoria, los dispositivos de entrada, los dispositivos de salida y los dispositivos de almacenamiento.
+[![Image-Memory-CPU.webp](https://i.postimg.cc/FFV0cy62/Image-Memory-CPU.webp)](https://postimg.cc/c66KGn0m)
 
 
 
