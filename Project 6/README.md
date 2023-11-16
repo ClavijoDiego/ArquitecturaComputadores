@@ -24,7 +24,7 @@ Los compiladores generan código de máquina a partir de lenguajes de alto nivel
 
 <h2>Componentes:</h2>
 
-<h4>Clase Assambler:</h4>
+<h4>Clase Assembler:</h4>
 
 La clase "Assembler" es responsable de traducir programas escritos en el Lenguaje de Ensamblaje Hack a código de máquina.
 Utiliza un Analizador para iterar a través del código de ensamblaje, una clase de Código para codificar instrucciones y una Tabla de Símbolos para gestionar símbolos.
@@ -36,5 +36,14 @@ Maneja el formato de instrucciones A e instrucciones C.
 <h4>Clase Parser:</h4>
 La clase "Parser" lee y analiza programas escritos en el Lenguaje de Ensamblaje Hack desde un archivo fuente.
 Filtra comentarios y líneas vacías y maneja diferentes tipos de comandos (A-command, C-command y L-command).
+
+<h4> Clase SymbolTable:</h4>
+La clase SymbolTable administra las direcciones vinculadas a los símbolos en el código de ensamblaje. Sus tareas incluyen inicializar la tabla con valores predeterminados y direcciones iniciales, agregar pares de símbolos y direcciones, verificar la existencia de un símbolo, recuperar la dirección asociada a un símbolo y aumentar las direcciones de programa y datos según sea necesario.
+
+<h4> Clase Program:</h4>
+La clase Program funciona como el punto de inicio para la ejecución del ensamblador. Sus tareas principales incluyen verificar la existencia y validez del archivo fuente, determinar la ruta y nombre del archivo de salida (.hack), iniciar el temporizador para medir el tiempo de traducción, crear una instancia del Ensamblador para la traducción y manejar posibles errores de entrada/salida, mostrando mensajes informativos sobre el proceso y su duración.
+
+<h4> Clase CommandType:</h4>
+La enumeración CommandType define los tipos de comandos en el Lenguaje de Ensamblaje Hack. Sus valores (A_COMMAND, C_COMMAND y L_COMMAND) permiten clasificar los comandos durante el análisis del código fuente.
 
 </HTML>
