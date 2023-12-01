@@ -1,0 +1,283 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+setwd("C:/Users/Diego/Desktop/ARQUITECTURA")
+```
+
+
+
+```{r}
+#cerai con 10-3-5
+datacerai <- read.csv("cerai.csv")
+```
+
+```{r}
+cerai_lat<- mean(datacerai$Latency, na.rm=TRUE)
+cerai_con<- mean(datacerai$Connect, na.rm=TRUE)
+print(cerai_lat)
+print(cerai_con)
+```
+
+```{r}
+#cerai with 1000-20-1
+datacerai1000 <- read.csv("cerai1000.csv")
+```
+
+```{r}
+cerai_lat1000<- mean(datacerai1000$Latency, na.rm=TRUE)
+cerai_con1000<- mean(datacerai1000$Connect, na.rm=TRUE)
+print(cerai_lat1000)
+print(cerai_con1000)
+ratio_lat<-cerai_lat1000/cerai_lat
+print( ratio_lat)
+ratio_con<-cerai_con1000/cerai_con
+print( ratio_con)
+
+print(cerai_con1000- cerai_con)
+print(cerai_lat1000 - cerai_lat)
+```
+
+```{r}
+#Amazon cloudfront
+databynder<-read.csv("bynder.csv")
+```
+
+```{r}
+bynder_lat<- mean(databynder$Latency, na.rm=TRUE)
+bynder_con<- mean(databynder$Connect, na.rm=TRUE)
+print(bynder_lat)
+print(bynder_con)
+```
+
+```{r}
+databynder1000<-read.csv("bynder1000.csv")
+```
+
+```{r}
+bynder_lat1000<- mean(databynder1000$Latency, na.rm=TRUE)
+bynder_con1000<- mean(databynder1000$Connect, na.rm=TRUE)
+print(bynder_lat1000)
+print(bynder_con1000)
+```
+```{r}
+#cloudfront
+datapepeganga<-read.csv("pepeganga.csv")
+```
+
+```{r}
+pepeganga_lat<- mean(datapepeganga$Latency, na.rm=TRUE)
+pepeganga_con<- mean(datapepeganga$Connect, na.rm=TRUE)
+print(pepeganga_lat)
+print(pepeganga_con)
+```
+```{r}
+#cloudfront
+datapepeganga1000<-read.csv("pepeganga1000.csv")
+```
+
+```{r}
+pepeganga_lat1000<- mean(datapepeganga1000$Latency, na.rm=TRUE)
+pepeganga_con1000<- mean(datapepeganga1000$Connect, na.rm=TRUE)
+print(pepeganga_lat1000)
+print(pepeganga_con1000)
+```
+
+```{r}
+#cloudflare
+datatoysmart<-read.csv("toysmart.csv")
+```
+
+```{r}
+toysmart_lat<- mean(datatoysmart$Latency, na.rm=TRUE)
+toysmart_con<- mean(datatoysmart$Connect, na.rm=TRUE)
+print(toysmart_lat)
+print(toysmart_con)
+```
+
+```{r}
+#cloudflare
+datatoysmart1000<-read.csv("toysmart1000.csv")
+```
+
+```{r}
+toysmart_lat1000<- mean(datatoysmart1000$Latency, na.rm=TRUE)
+toysmart_con1000<- mean(datatoysmart1000$Connect, na.rm=TRUE)
+print(toysmart_lat1000)
+print(toysmart_con1000)
+```
+
+```{r}
+#cloudflare
+datalego<-read.csv("lego.csv")
+```
+
+```{r}
+lego_lat<- mean(datalego$Latency, na.rm=TRUE)
+lego_con<- mean(datalego$Connect, na.rm=TRUE)
+print(lego_lat)
+print(lego_con)
+```
+```{r}
+#cloudflare
+datalego1000<-read.csv("lego1000.csv")
+```
+
+```{r}
+lego_lat1000<- mean(datalego1000$Latency, na.rm=TRUE)
+lego_con1000<- mean(datalego1000$Connect, na.rm=TRUE)
+print(lego_lat1000)
+print(lego_con1000)
+```
+
+
+
+
+```{r}
+site_names <- c("Cerai", "Pepeganga", "Bynder", "Toysmart", "Lego")
+connect_times <- c(cerai_con, pepeganga_con, bynder_con, toysmart_con, lego_con)
+
+bar_colors <- c("red", "skyblue", "skyblue", "orange", "orange")
+comments <- c("No CDN", "CloudFront", "CloudFront", "Cloudflare", "Cloudflare")
+
+
+barplot(connect_times, names.arg = site_names, col = bar_colors, main = "Tiempos de Conexión baja demanda", ylab = "Tiempos de Conexión", xlab = "Sitios Web")
+
+
+text(x = barplot(connect_times, col = bar_colors, plot = FALSE), y = rep(1, length(site_names)),
+     labels = comments, pos = 3, offset = 0.9, col = "black", cex = 0.8)
+
+```
+
+```{r}
+site_names <- c("Cerai", "Pepeganga", "Bynder", "Toysmart", "Lego")
+connect_times <- c(cerai_con1000, pepeganga_con1000, bynder_con1000, toysmart_con1000, lego_con1000)
+
+
+bar_colors <- c("red", "skyblue", "skyblue", "orange", "orange")
+
+comments <- c("No CDN", "CloudFront", "CloudFront", "Cloudflare", "Cloudflare")
+
+
+barplot(connect_times, names.arg = site_names, col = bar_colors, main = "Tiempos de Conexión alta demanda", ylab = "Tiempos de Conexión", xlab = "Sitios Web")
+
+text(x = barplot(connect_times, col = bar_colors, plot = FALSE), y = rep(1, length(site_names)),
+     labels = comments, pos = 3, offset = 0.9, col = "black", cex = 0.8)
+
+```
+
+```{r}
+print(bynder_con1000- bynder_con)
+print(toysmart_con1000 - toysmart_con)
+```
+
+
+```{r}
+site_names <- c("Cerai", "Pepeganga", "Bynder", "Toysmart", "Lego")
+latency_times <- c(cerai_lat, pepeganga_lat, bynder_lat, toysmart_lat, lego_lat)
+
+
+bar_colors <- c("red", "skyblue", "skyblue", "orange", "orange")
+
+comments <- c("No CDN", "CloudFront", "CloudFront", "Cloudflare", "Cloudflare")
+
+
+barplot(connect_times, names.arg = site_names, col = bar_colors, main = "Latencia baja demanda", ylab = "Latencia", xlab = "Sitios Web")
+
+text(x = barplot(connect_times, col = bar_colors, plot = FALSE), y = rep(1, length(latency_times)),
+     labels = comments, pos = 3, offset = 0.9, col = "black", cex = 0.8)
+
+```
+
+```{r}
+site_names <- c("Cerai", "Pepeganga", "Bynder", "Toysmart", "Lego")
+latency_times <- c(cerai_lat1000, pepeganga_lat1000, bynder_lat1000, toysmart_lat1000, lego_lat1000)
+
+
+bar_colors <- c("red", "skyblue", "skyblue", "orange", "orange")
+
+
+comments <- c("No CDN", "CloudFront", "CloudFront", "Cloudflare", "Cloudflare")
+
+
+barplot(latency_times, names.arg = site_names, col = bar_colors, main = "Latencia alta demanda", ylab = "Latency", xlab = "Webites")
+
+text(x = barplot(connect_times, col = bar_colors, plot = FALSE), y = rep(1, length(latency_times)),
+     labels = comments, pos = 3, offset = 0.9, col = "black", cex = 0.8)
+
+```
+
+```{r}
+print(pepeganga_lat1000 - pepeganga_lat)
+print(bynder_lat1000 - bynder_lat)
+print(toysmart_lat1000 - toysmart_lat)
+print(lego_lat1000 - lego_lat)
+
+
+```
+
+
+
+
+
+```{r}
+ratiolat<-c((pepeganga_lat1000)/pepeganga_lat, (bynder_lat1000)/bynder_lat, (toysmart_lat1000)/toysmart_lat, (lego_lat1000)/lego_lat)
+site_names <- c( "Pepeganga", "Bynder", "Toysmart", "Lego")
+
+
+bar_colors <- c("skyblue", "skyblue", "orange", "orange")
+
+comments <- c( "CloudFront", "CloudFront", "Cloudflare", "Cloudflare")
+
+# Gráfica de barras
+barplot(ratiolat, names.arg = site_names, col = bar_colors, main = "Ratio latencia", ylab = "ratio de Latencia", xlab = "Webites")
+
+# Agregar comentarios en la gráfica
+text(x = barplot(ratiolat, col = bar_colors, plot = FALSE), y = rep(1, length(site_names)),
+     labels = comments, pos = 1, offset = 0.1, col = "black", cex = 0.8)
+
+```
+
+```{r}
+ratiolat<-c((pepeganga_con1000)/pepeganga_con, (bynder_con1000)/bynder_con, (toysmart_con1000)/toysmart_con, (lego_con1000)/lego_con)
+site_names <- c( "Pepeganga", "Bynder", "Toysmart", "Lego")
+
+
+bar_colors <- c("skyblue", "skyblue", "orange", "orange")
+
+
+
+comments <- c("CloudFront", "CloudFront", "Cloudflare", "Cloudflare")
+
+# Gráfica de barras
+barplot(ratiolat, names.arg = site_names, col = bar_colors, main = "Ratio conexión", ylab = "Latency", xlab = "Webites")
+
+# Agregar comentarios en la gráfica
+text(x = barplot(ratiolat, col = bar_colors, plot = FALSE), y = rep(1, length(site_names)),
+     labels = comments, pos = 1, offset = 0.1, col = "black", cex = 0.8)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

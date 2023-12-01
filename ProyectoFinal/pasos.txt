@@ -1,0 +1,16 @@
+Una vez iniciado el programa, debe dirigirse a Testplan y añadir un Thread Group el cual es el
+componente encargado de generar los usuarios que accederan
+a la pagina web deseada y para baja demanda la configuración de este será de Number of Threads(users) 10, ramp-up period(seconds) 3 y Loop count 5, en el caso de alta demanda estas mismas opciones serían respectivamente 1000:20:1.
+
+Después, en este mismo Thread group se añade un CSV Data Set Config que está sobre los Config Elements y en este el campo Filename se pondrá la ruta del archivo template.csv que será el que parametrizará los campos del http request.
+
+Posteriormente se crea dentro del thread group un http request y en esta en los campos de Protocol se pondrá: ${protocol}, para server name or IP: ${url} y en path: ${path}.
+
+Finalmente, se crea en el thread group también un Listener del tipo SimpleDataWriter, en este el campo de Filename se agrega la ruta de un archivo que se sobreescribirá con la nueva información o en caso de que esa ruta no exista, se creará un archivo nuevo ahí.
+
+En cuanto al archivo template.csv este consiste de 3 columnas, en la primera que es protocol, el segundo campo siempre se deberá dejar en https ya que es el protocolo que se utillizará.
+Los que realmente deben variar son url en el cual se pondrá el url deseado, ejemplo: "tiendalego.com.co" y en la columna path va cualquier adición a ese url como por ejemplo "/en" o "/collection/en", etc.
+
+Y esos valores puestos serán los que se agregarán a los campos del http request y por eso estos eran ${protocol}, ${url} y ${path} ya que agarran las respectivas columnas del csv.
+
+Al tener esto ya preparado, el paso final es ejecutar el Jmeter y esperar que se ejecute todo el programa, y se creará un nuevo archivo con los datos de esa prueba. Después para replicarlo con otra configuración, es necesario modificar el template.csv con la nueva url y path en los campos indicados, modificar el Filename en  el componente de Jmeter de simple data writer para que cree un nuevo archivo y no sobreescriba el que ya se creó y después de eso volver a ejecutar una prueba y repetir
